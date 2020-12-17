@@ -1,0 +1,10 @@
+/* pages/home.wxss */
+.topTheme{
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+.container{
+  
+  
+}

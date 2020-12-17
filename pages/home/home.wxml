@@ -1,0 +1,4 @@
+<!--pages/home.wxml-->
+<view class="container">
+<image class="topTheme" src="{{topTheme.entrance_img}}"></image>
+</view>
