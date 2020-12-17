@@ -1,6 +1,7 @@
 // pages/home.js
-import {config} from "../../config/config"
+
 import {Theme} from "../../model/theme"
+
 Page({
 
   /**
