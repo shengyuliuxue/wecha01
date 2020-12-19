@@ -15,13 +15,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      Theme.getHomeLocationA(
-        (info)=>{
-            this.setData({
-              topTheme:info[0]
-            })
-        }
-      )
+      // Theme.getHomeLocationA(
+      //   (info)=>{
+      //       this.setData({
+      //         topTheme:info[0]
+      //       })
+      //   }
+      // )
+
+    let theme = new Theme();
+    let promise = theme.getHomeLocationA();
+     promise.then((value)=>{
+       //console.log(value.data[0]);
+       this.setData({
+         topTheme:value.data[0]
+       })
+     })
+     
+
   },
 
   /**
