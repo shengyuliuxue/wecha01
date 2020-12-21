@@ -1,4 +1,3 @@
-//func(param) -> func2(promise)
 
 const promisec = function(func){
     return function(params={}){
@@ -12,4 +11,8 @@ const promisec = function(func){
           func(args);
        });
     }
+}
+
+export{
+  promisec
 }

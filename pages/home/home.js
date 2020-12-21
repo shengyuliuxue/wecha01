@@ -1,6 +1,7 @@
 // pages/home.js
 
 import {Theme} from "../../model/theme"
+import {Banner} from "../../model/Banner"
 
 Page({
 
@@ -8,12 +9,33 @@ Page({
    * 页面的初始数据
    */
   data: {
-      topTheme:null
+      topTheme:null,
+      banner:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+  initAllData(){
+    let theme = new Theme();
+    let promise = theme.getHomeLocationA();
+     promise.then((value)=>{
+       //console.log(value.data[0]);
+       this.setData({
+         topTheme:value.data[0]
+       })
+     })
+
+     let promiseB = Banner.getLocationB();
+     promiseB.then((value)=>{
+       this.setData({
+         banner:value.data.items[0]
+       })
+      //console.log(value.data.items[0])
+     })
+
+  },
+
   onLoad: function (options) {
       // Theme.getHomeLocationA(
       //   (info)=>{
@@ -23,15 +45,9 @@ Page({
       //   }
       // )
 
-    let theme = new Theme();
-    let promise = theme.getHomeLocationA();
-     promise.then((value)=>{
-       //console.log(value.data[0]);
-       this.setData({
-         topTheme:value.data[0]
-       })
-     })
-     
+
+     this.initAllData();
+
 
   },
 

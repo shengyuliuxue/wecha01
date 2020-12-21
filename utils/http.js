@@ -15,7 +15,9 @@ class shttprequest{
   //   )
   // }
 
-  static 
+  static request(){
+    
+  }
 
 }
 
