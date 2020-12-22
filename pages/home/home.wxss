@@ -3,11 +3,9 @@
   width: 100%;
   height: 260rpx; 
 }
-.banner{
+
+
+.swiper-img{
   width: 100%;
   height: 360rpx; 
-}
-.swiper{
-  width: 100%;
-  height: 360rpx;
 }

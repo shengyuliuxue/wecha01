@@ -29,9 +29,9 @@ Page({
      let promiseB = Banner.getLocationB();
      promiseB.then((value)=>{
        this.setData({
-         banner:value.data.items[0]
+         banner:value.data.items
        })
-      //console.log(value.data.items[0])
+      console.log(value.data.items[0].img)
      })
 
   },
