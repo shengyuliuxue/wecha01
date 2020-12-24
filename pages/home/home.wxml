@@ -8,4 +8,7 @@
       </swiper-item>
     </block>
 </swiper>
+<category-grid>
+  
+</category-grid>
 </view>
