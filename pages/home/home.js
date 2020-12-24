@@ -2,6 +2,7 @@
 
 import {Theme} from "../../model/theme"
 import {Banner} from "../../model/Banner"
+import {Grid} from "../../model/Grid"
 
 Page({
 
@@ -10,7 +11,8 @@ Page({
    */
   data: {
       topTheme:null,
-      banner:null
+      banner:null,
+      grid:[]
   },
 
   /**
@@ -31,7 +33,14 @@ Page({
        this.setData({
          banner:value.data.items
        })
-      console.log(value.data.items[0].img)
+     })
+
+     let girds = Grid.getGirds();
+     girds.then((value)=>{
+       this.setData({
+         grid:value.data
+       })
+        console.log(value.data);
      })
 
   },
