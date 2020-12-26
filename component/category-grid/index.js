@@ -4,7 +4,9 @@ Component({
    * Component properties
    */
   properties: {
-      
+      grid2:{
+        type:Array
+      }
   },
 
   /**

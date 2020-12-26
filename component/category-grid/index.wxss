@@ -1,1 +1,23 @@
 /* component/category-grid/index.wxss */
+.category-container{
+  width: 100%;
+  height: 320rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.img{
+  width: 60rpx;
+  height: 60rpx;
+}
+.innercontainer{
+  width:730rpx;
+  border: 1px dashed #DECBE6;
+}
+
+.grid-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
