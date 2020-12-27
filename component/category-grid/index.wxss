@@ -21,3 +21,14 @@
   flex-direction: column;
   align-items: center;
 }
+
+.gridContainer{
+  width: 100%;
+  margin-top:10rpx;
+  margin-bottom: 10rpx;
+}
+.text{
+  margin-top:6rpx;
+  font-size: 24rpx;
+  color:#333333
+}

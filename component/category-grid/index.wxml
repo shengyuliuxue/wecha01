@@ -1,5 +1,5 @@
 <!--component/category-grid/index.wxml-->
-<view class="category-container"> 
+<view class="gridContainer"> 
   <s-grid row-num="3" l-class="innercontainer">
       <block wx:for="{{grid2}}">
         <s-grid-item key="{{index}}" slot="{{index}}">

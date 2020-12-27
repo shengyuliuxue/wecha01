@@ -8,7 +8,9 @@
       </swiper-item>
     </block>
 </swiper>
+
 <category-grid class="gridContainer" grid2="{{grid}}">
-   
 </category-grid>
+
+<image  class="activity" src="{{activityD.entrance_img}}"></image>
 </view>

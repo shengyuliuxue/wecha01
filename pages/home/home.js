@@ -3,6 +3,13 @@
 import {Theme} from "../../model/theme"
 import {Banner} from "../../model/Banner"
 import {Grid} from "../../model/Grid"
+import { Activity } from "../../model/Activity";
+
+
+function hello(x){
+  return x>0;}
+
+console.log(hello(1));
 
 Page({
 
@@ -12,7 +19,8 @@ Page({
   data: {
       topTheme:null,
       banner:null,
-      grid:[]
+      grid:[],
+      activityD:null
   },
 
   /**
@@ -40,10 +48,18 @@ Page({
        this.setData({
          grid:value.data
        })
-        console.log(value.data);
      })
 
+     Activity.getLocationD().then((value)=>{
+       this.setData({
+          activityD:value.data 
+       })
+       console.log(value.data)
+     })
   },
+  
+
+
 
   onLoad: function (options) {
       // Theme.getHomeLocationA(
