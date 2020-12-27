@@ -27,10 +27,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   initAllData(){
-    let theme = new Theme();
-    let promise = theme.getHomeLocationA();
+    // let theme = new Theme();
+    let promise = Theme.getHomeLocationA();
      promise.then((value)=>{
-       //console.log(value.data[0]);
+       console.log(value.data[0]);
        this.setData({
          topTheme:value.data[0]
        })
@@ -54,7 +54,7 @@ Page({
        this.setData({
           activityD:value.data 
        })
-       console.log(value.data)
+       //console.log(value.data)
      })
   },
   
