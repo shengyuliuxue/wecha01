@@ -1,6 +1,6 @@
 <!--pages/home.wxml-->
 <view class="container">
-<image class="topTheme" src="{{topTheme.entrance_img}}"></image> 
+<image class="topTheme" src="{{topTheme.entrance_img}}" height="{{imageheight}}"></image> 
 <swiper class="swiper-img" indicator-dots="true" indicator-active-color="#157658" autoplay circular>
     <block wx:for="{{banner}}">
       <swiper-item>
@@ -9,7 +9,9 @@
     </block>
 </swiper>
 
+
 <category-grid class="gridContainer" grid2="{{grid}}">
+
 </category-grid>
 
 <image  class="activity" src="{{activityD.entrance_img}}"></image>

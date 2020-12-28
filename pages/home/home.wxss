@@ -1,13 +1,14 @@
 /* pages/home.wxss */
 .topTheme{
   width: 100%;
-  height: 260rpx; 
+  
 }
 
 .swiper-img{
   width: 100%;
   height: 360rpx; 
 }
+
 
 .activity{
   margin-top: 20rpx;

@@ -1,4 +1,5 @@
 <!--component/category-grid/index.wxml-->
+
 <view class="gridContainer"> 
   <s-grid row-num="3" l-class="innercontainer">
       <block wx:for="{{grid2}}">
@@ -10,4 +11,6 @@
         </s-grid-item>
       </block>
   </s-grid>
+
+
 </view>

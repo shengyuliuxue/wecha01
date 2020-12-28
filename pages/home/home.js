@@ -5,12 +5,6 @@ import {Banner} from "../../model/Banner"
 import {Grid} from "../../model/Grid"
 import { Activity } from "../../model/Activity";
 
-
-function hello(x){
-  return x>0;}
-
-console.log(hello(1));
-
 Page({
 
   /**
@@ -18,6 +12,7 @@ Page({
    */
   data: {
       topTheme:null,
+      imageheight:null,
       banner:null,
       grid:[],
       activityD:null
@@ -26,15 +21,17 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  initAllData(){
-    // let theme = new Theme();
-    let promise = Theme.getHomeLocationA();
-     promise.then((value)=>{
-       console.log(value.data[0]);
-       this.setData({
-         topTheme:value.data[0]
-       })
-     })
+async  initAllData(){
+     const themes = await Theme.getThemes();
+     const ThemeA = themes.data.find(t=>t.name==='t-1');
+     const ThemeE = themes.data.find(t=>t.name==='t-2');
+
+     console.log(themes);
+
+     this.setData({
+       topTheme:ThemeA,
+       imageheight:100
+     });
 
      let promiseB = Banner.getLocationB();
      promiseB.then((value)=>{
@@ -54,25 +51,17 @@ Page({
        this.setData({
           activityD:value.data 
        })
-       //console.log(value.data)
+ 
      })
+
   },
   
 
 
 
   onLoad: function (options) {
-      // Theme.getHomeLocationA(
-      //   (info)=>{
-      //       this.setData({
-      //         topTheme:info[0]
-      //       })
-      //   }
-      // )
-
 
      this.initAllData();
-
 
   },
 
