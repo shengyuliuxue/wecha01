@@ -3,16 +3,16 @@ import {config} from "../config/config"
 import {shttprequest} from "../utils/http"
 import { promisec } from "../utils/util"
 class Theme{
-
-
     static locationA = 't-1';
     static locationE = 't-2';
     static locationF = 't-3';
     static locationH = 't-4';
+    result={};
+    themes=[];
 
-    static async getThemes(){
+     async getThemes(){
         const names = `${Theme.locationA},${Theme.locationE},${Theme.locationF},${Theme.locationH}`;
-        return await promisec(wx.request)({
+        this.result = await promisec(wx.request)({
             url: `${config.apiBaseUrl}/v1/theme/by/names`,
             data:{
                 names:names
@@ -20,26 +20,14 @@ class Theme{
             header:{
                 appkey: config.appkey
             } 
-        })
+        });
+        this.themes = this.result.data;
     }
 
-    static async  getHomeLocationA(){
-        return await promisec(wx.request)({
-          url: `${config.apiBaseUrl}/v1/theme/by/names`,
-          data:{
-              names:Theme.locatiobA
-          },
-          header:{
-                      appkey: config.appkey
-                }
-        })
+    getHomeLocationA(){
+       return this.themes.find( t=>t.name===Theme.locationA);
     }
 
-    static async getHomeLocationE(){
-        return await promisec(wx.request)({ 
-
-        })
-    }
 }
 
 export{

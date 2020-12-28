@@ -1,7 +1,6 @@
 /* pages/home.wxss */
 .topTheme{
   width: 100%;
-  
 }
 
 .swiper-img{

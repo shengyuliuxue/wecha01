@@ -3,7 +3,7 @@
 import {Theme} from "../../model/theme"
 import {Banner} from "../../model/Banner"
 import {Grid} from "../../model/Grid"
-import { Activity } from "../../model/Activity";
+import {Activity} from "../../model/Activity";
 
 Page({
 
@@ -22,15 +22,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
 async  initAllData(){
-     const themes = await Theme.getThemes();
-     const ThemeA = themes.data.find(t=>t.name==='t-1');
-     const ThemeE = themes.data.find(t=>t.name==='t-2');
 
-     console.log(themes);
+    // const themes = await Theme.getThemes();
+    //  const ThemeA = themes.data.find(t=>t.name==='t-1');
+    //  const ThemeE = themes.data.find(t=>t.name==='t-2');
+
+    //  console.log(themes);
+    const th = new Theme();
+    await th.getThemes();
+    // const a = th.getHomeLocationA();
+    // console.log(a);
 
      this.setData({
-       topTheme:ThemeA,
-       imageheight:100
+      topTheme: th.getHomeLocationA(),
+       imageheight:300
      });
 
      let promiseB = Banner.getLocationB();

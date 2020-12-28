@@ -1,6 +1,7 @@
 <!--pages/home.wxml-->
 <view class="container">
-<image class="topTheme" src="{{topTheme.entrance_img}}" height="{{imageheight}}"></image> 
+<image class="topTheme" src="{{topTheme.entrance_img}}" 
+mode='widthFix'></image> 
 <swiper class="swiper-img" indicator-dots="true" indicator-active-color="#157658" autoplay circular>
     <block wx:for="{{banner}}">
       <swiper-item>
