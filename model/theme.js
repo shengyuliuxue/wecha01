@@ -28,6 +28,19 @@ class Theme{
        return this.themes.find( t=>t.name===Theme.locationA);
     }
 
+    static async getThemeLocationESpu(){
+        return Theme.getThemeSpuByName(Theme.locationE);
+    } 
+
+    static async getThemeSpuByName(name){
+        return await promisec(wx.request)({
+            url: `${config.apiBaseUrl}/v1/theme/name/${name}/with_spu`,
+            header:{
+                appkey: config.appkey
+            } 
+        });
+    }
+
 }
 
 export{

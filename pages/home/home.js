@@ -30,6 +30,7 @@ async  initAllData(){
     //  console.log(themes);
     const th = new Theme();
     await th.getThemes();
+    const themeESpuList = await Theme.getThemeLocationESpu()
     // const a = th.getHomeLocationA();
     // console.log(a);
 
