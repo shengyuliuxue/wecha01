@@ -32,7 +32,7 @@ async  initAllData(){
     await th.getThemes();
     const themeESpuList = await Theme.getThemeLocationESpu()
     // const a = th.getHomeLocationA();
-    // console.log(a);
+     console.log(themeESpuList);
 
      this.setData({
       topTheme: th.getHomeLocationA(),
@@ -59,6 +59,12 @@ async  initAllData(){
        })
  
      })
+
+    //  let spudata = Theme.getThemeLocationESpu();
+    //  spudata.then((value)=>{
+    //     console.log(value);
+    //  })
+    
 
   },
   
