@@ -15,7 +15,8 @@ Page({
       imageheight:null,
       banner:null,
       grid:[],
-      activityD:null
+      activityD:null,
+      spuTheme:null
   },
 
   /**
@@ -36,7 +37,8 @@ async  initAllData(){
 
      this.setData({
       topTheme: th.getHomeLocationA(),
-       imageheight:300
+       imageheight:300,
+       spuTheme:themeESpuList
      });
 
      let promiseB = Banner.getLocationB();

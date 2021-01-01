@@ -1,2 +1,15 @@
 <!--component/spu-scroll/index.wxml-->
-<text>component/spu-scroll/index.wxml</text>
+<view class="spuContainer">
+  <image class="spuTitleImage" mode="widthFix" 
+              src="{{theme.data.title_img}}"></image>
+  <view class="page-section-spacing">         
+  <scroll-view scroll-x="true" style="width: 100%; white-space: nowrap;">
+    <block wx:for="{{theme.data.spu_list}}">
+        <view class="scroll-view-item_H">
+          <image src="{{item.img}}"></image>
+          <text>{{item.title}}</text>
+        </view>
+    </block>
+  </scroll-view>
+</view>   
+</view>

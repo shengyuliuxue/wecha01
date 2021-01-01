@@ -1,1 +1,15 @@
 /* component/spu-scroll/index.wxss */
+.spuTitleImage{
+  width: 100%;
+}
+
+scroll-view{
+  width: 100%;
+  white-space: nowrap;
+}
+
+
+.scroll-view-item_H{
+  display: inline-block;
+  
+}

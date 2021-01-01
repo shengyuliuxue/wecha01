@@ -4,7 +4,9 @@ Component({
    * Component properties
    */
   properties: {
-
+    theme:{
+      type:Object
+    }
   },
 
   /**

@@ -16,4 +16,8 @@ mode='widthFix'></image>
 </category-grid>
 
 <image  class="activity" src="{{activityD.entrance_img}}"></image>
+
+<spu-scroll class="spuContainer" theme="{{spuTheme}}">
+  
+</spu-scroll>
 </view>
