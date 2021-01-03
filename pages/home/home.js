@@ -16,7 +16,9 @@ Page({
       banner:null,
       grid:[],
       activityD:null,
-      spuTheme:null
+      spuTheme:null,
+      themeF:null,
+      bannerG:null
   },
 
   /**
@@ -33,12 +35,16 @@ async  initAllData(){
     await th.getThemes();
     const themeESpuList = await Theme.getThemeLocationESpu()
     // const a = th.getHomeLocationA();
-     console.log(themeESpuList);
-
+     //console.log(themeESpuList);
+    const themeF = th.getHomeLocationF();
+    const bannerG = await Banner.getLocationG();
+    console.log(bannerG);
      this.setData({
       topTheme: th.getHomeLocationA(),
        imageheight:300,
-       spuTheme:themeESpuList
+       spuTheme:themeESpuList,
+       themeF:themeF,
+       bannerG:bannerG
      });
 
      let promiseB = Banner.getLocationB();

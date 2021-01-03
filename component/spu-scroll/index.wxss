@@ -29,3 +29,9 @@
   display: flex;
   flex-direction: row;
 }
+
+.spu-text{
+  font-size:20rpx;
+  color:#666666;
+  margin-top: 20rpx;
+}

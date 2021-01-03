@@ -20,4 +20,11 @@ mode='widthFix'></image>
 <spu-scroll class="spuContainer" theme="{{spuTheme}}">
   
 </spu-scroll>
+<image src="{{themeF.entrance_img}}" class="quality">
+</image>
+
+
+<hot-list banner="{{bannerG.data}}">
+
+</hot-list>
 </view>

@@ -1,0 +1,4 @@
+/* component/hot-list/index.wxss */
+.hotlistContainer{
+  width: 100%;
+}
