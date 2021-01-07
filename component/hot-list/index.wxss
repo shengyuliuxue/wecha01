@@ -2,3 +2,35 @@
 .hotlistContainer{
   width: 100%;
 }
+
+.left-img{
+  width: 50%;
+  padding-right: 15rpx;
+  height:522rpx;
+}
+
+.right-img-top{
+  width: 100%;
+  height: 260rpx;
+  
+}
+
+.right-img-bottom{
+  width: 100%;
+  height: 260rpx;
+ 
+}
+.right-container{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+ 
+}
+
+.inner-container{
+  width: 100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

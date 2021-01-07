@@ -1,6 +1,6 @@
 //业务对象
 import {config} from "../config/config"
-import {shttprequest} from "../utils/http"
+
 import { promisec } from "../utils/util"
 class Theme{
     static locationA = 't-1';

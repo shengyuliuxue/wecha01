@@ -1,27 +1,24 @@
 import {config} from "../config/config"
+import {promisec} from "../utils/util"
 
-class shttprequest{
-  // static request(param, callback){
-  //   wx.request({
-  //     url:param.url,
-  //     method: param.method,
-  //     data:param.data,
-  //     header:param.header,
-  //     success:(res)=>{         
-  //         callback(res.data)
-  //         console.log(res.data)
-  //     }
-  //   }
-  //   )
-  // }
+class Http{
 
-  static request(){
-    
-  }
+   static async request({url, method='GET', data}) {
+     const requestResult = await promisec(wx.request)({
+      url:`${config.apiBaseUrl}/${url}`,
+      method:method,
+      data:data,
+      header:{
+        appkey: config.appkey
+      }
+    })
+    return requestResult.data
+   }
 
 }
 
+
 export{
-  shttprequest
+  Http
 }
 

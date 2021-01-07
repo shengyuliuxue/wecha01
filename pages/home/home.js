@@ -3,7 +3,9 @@
 import {Theme} from "../../model/theme"
 import {Banner} from "../../model/Banner"
 import {Grid} from "../../model/Grid"
-import {Activity} from "../../model/Activity";
+import {Activity} from "../../model/Activity"
+import {Http} from "../../utils/http"
+import {Paging} from "../../model/Paging"
 
 Page({
 
@@ -38,7 +40,7 @@ async  initAllData(){
      //console.log(themeESpuList);
     const themeF = th.getHomeLocationF();
     const bannerG = await Banner.getLocationG();
-    console.log(bannerG);
+    
      this.setData({
       topTheme: th.getHomeLocationA(),
        imageheight:300,
@@ -68,12 +70,22 @@ async  initAllData(){
  
      })
 
-    //  let spudata = Theme.getThemeLocationESpu();
-    //  spudata.then((value)=>{
-    //     console.log(value);
-    //  })
+    //  Http.request({url:'v1/spu/latest'}).then(res=>{
+    //   console.log(res.data);
+    //  });
     
+     //let spulatest =  await Http.request({url:'v1/spu/latest'})
+    
+     //console.log(spulatest)
 
+     const page = new Paging({
+       url:'v1/spu/latest',
+       start:0,
+       count:5
+     })
+     
+     page.getCurrentData();
+     page._nextPageData();
   },
   
 
