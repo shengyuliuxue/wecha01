@@ -27,4 +27,9 @@ mode='widthFix'></image>
 <hot-list banner="{{bannerG.data}}">
 
 </hot-list>
+
+  <view class="waterflow">
+    <l-water-flow generic:l-water-flow-item="spu-list"/>
+  </view>
+
 </view>
