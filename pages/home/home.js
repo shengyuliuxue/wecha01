@@ -20,7 +20,26 @@ Page({
       activityD:null,
       spuTheme:null,
       themeF:null,
-      bannerG:null
+      bannerG:null,
+      demo:[{
+        image: '../../img/taco.jpg',
+        title: '显瘦中长款系带风衣',
+        describe: '柔软顺滑、上身挺括显瘦，垂坠飘逸、不易皱好打理。',
+        count: '888',
+        delCount: '666'
+      },{
+        image: '../../img/taco.jpg',
+        title: '显瘦中长款系带风衣',
+        describe: '柔软顺滑、上身挺括显瘦，垂坠飘逸、不易皱好打理。',
+        count: '888',
+        delCount: '666'
+      },{
+        image: '../../img/taco.jpg',
+        title: '显瘦中长款系带风衣',
+        describe: '柔软顺滑、上身挺括显瘦，垂坠飘逸、不易皱好打理。',
+        count: '888',
+        delCount: '666'
+      }]
   },
 
   /**
@@ -84,16 +103,27 @@ async  initAllData(){
        count:5
      })
      
-     page.getCurrentData();
-     page._nextPageData();
+     await page.getCurrentData();
+     await page._nextPageData();
+     await page._nextPageData();
+     await page._nextPageData();
+     await page._nextPageData();
+     await page._nextPageData();
+     await page._nextPageData();
+
+
+
+
   },
   
-
 
 
   onLoad: function (options) {
 
      this.initAllData();
+     wx.lin.renderWaterFlow(this.data.demo, false, ()=>{
+      console.log('渲染成功')
+    })
 
   },
 
