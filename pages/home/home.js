@@ -21,25 +21,8 @@ Page({
       spuTheme:null,
       themeF:null,
       bannerG:null,
-      demo:[{
-        image: '../../img/taco.jpg',
-        title: '显瘦中长款系带风衣',
-        describe: '柔软顺滑、上身挺括显瘦，垂坠飘逸、不易皱好打理。',
-        count: '888',
-        delCount: '666'
-      },{
-        image: '../../img/taco.jpg',
-        title: '显瘦中长款系带风衣',
-        describe: '柔软顺滑、上身挺括显瘦，垂坠飘逸、不易皱好打理。',
-        count: '888',
-        delCount: '666'
-      },{
-        image: '../../img/taco.jpg',
-        title: '显瘦中长款系带风衣',
-        describe: '柔软顺滑、上身挺括显瘦，垂坠飘逸、不易皱好打理。',
-        count: '888',
-        delCount: '666'
-      }]
+      demo: null,
+      page:null
   },
 
   /**
@@ -89,30 +72,33 @@ async  initAllData(){
  
      })
 
-    //  Http.request({url:'v1/spu/latest'}).then(res=>{
-    //   console.log(res.data);
-    //  });
-    
-     //let spulatest =  await Http.request({url:'v1/spu/latest'})
-    
-     //console.log(spulatest)
 
-     const page = new Paging({
-       url:'v1/spu/latest',
-       start:0,
-       count:5
+    //  this.data.page = new Paging({
+    //    url:'v1/spu/latest',
+    //    start:0,
+    //    count:5
+    //  })
+
+     this.setData({
+       page: new Paging({
+         url:'v1/spu/latest',
+         start:0,
+         count:5
+       })
+     });
+
+     const spudata = await this.data.page.getCurrentData();
+     console.log(spudata.items);
+     this.setData({
+       demo: spudata.items
      })
-     
-     await page.getCurrentData();
-     await page._nextPageData();
-     await page._nextPageData();
-     await page._nextPageData();
-     await page._nextPageData();
-     await page._nextPageData();
-     await page._nextPageData();
 
-
-
+     wx.lin.renderWaterFlow(this.data.demo, false, ()=>{
+      console.log('渲染成功')
+    })
+    
+    const moredata = await this.data.page._nextPageData();
+    console.log(moredata);
 
   },
   
@@ -121,9 +107,6 @@ async  initAllData(){
   onLoad: function (options) {
 
      this.initAllData();
-     wx.lin.renderWaterFlow(this.data.demo, false, ()=>{
-      console.log('渲染成功')
-    })
 
   },
 
@@ -167,6 +150,7 @@ async  initAllData(){
    */
   onReachBottom: function () {
 
+      console.log("加载更多")
   },
 
   /**
