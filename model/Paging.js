@@ -34,7 +34,7 @@ class Paging{
       this.start = pageData.total;
     }
     
-    console.log(pageData);
+    //console.log(pageData);
     return pageData;
   }
 
