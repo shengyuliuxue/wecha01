@@ -11,10 +11,12 @@ class Paging{
   totalPage;
   historyData=[];
   currentPageData=[];
-  constructor({url, start=0, count=10,currentPage=1,totalPage=0}){
+  constructor({url, start=0, count=10,currentPage=0,totalPage=0}){
     this.url =  url;
     this.start = start;
     this.count = count;
+    this.currentPage=currentPage;
+    this.totalPage=totalPage;
   }
   
   async getCurrentData(){
@@ -26,7 +28,7 @@ class Paging{
     if(pageData == null){
       return;
     }
-    this.totalPage = pageData.totalPage;
+    this.totalPage = pageData.total_page;
     this.currentPage = pageData.page;
     if(this.currentPage!=this.totalPage){
       this.start += this.count; 
@@ -34,7 +36,7 @@ class Paging{
       this.start = pageData.total;
     }
     
-    //console.log(pageData);
+    console.log(pageData);
     return pageData;
   }
 

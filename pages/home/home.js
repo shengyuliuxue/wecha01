@@ -74,40 +74,40 @@ async  initAllData(){
 
 
 
-    //  this.setData({
-    //    page: new Paging({
-    //      url:'v1/spu/latest',
-    //      start:0,
-    //      count:5
-    //    })
-    //  });
-
-    //  const spudata = await this.data.page.getCurrentData();
-    //  console.log(spudata.items);
-    //  this.setData({
-    //    demo: spudata.items
-    //  })
-
-    //  wx.lin.renderWaterFlow(this.data.demo, false, ()=>{
-    //   console.log('渲染成功')
-    // })
-    
-    // const moredata = await this.data.page._nextPageData();
-    // console.log(moredata);
-
-    //this.data.page._nextPageData();
-
-     const paging = new Paging({
+     this.setData({
+       page: new Paging({
          url:'v1/spu/latest',
          start:0,
          count:5
        })
+     });
 
-     await paging.getCurrentData();  
+     const spudata = await this.data.page.getCurrentData();
+     console.log(spudata.items);
+     this.setData({
+       demo: spudata.items
+     })
+
+     wx.lin.renderWaterFlow(this.data.demo, false, ()=>{
+      console.log('渲染成功')
+    })
+    
+    // const moredata = await this.data.page._nextPageData();
+    // console.log(moredata);
+
+    
+
+    //  const paging = new Paging({
+    //      url:'v1/spu/latest',
+    //      start:0,
+    //      count:5
+    //    })
+
+    //  await paging.getCurrentData();  
      
-     await paging._nextPageData();
+    //  await paging._nextPageData();
      
-     await paging._nextPageData();
+    //  await paging._nextPageData();
     
   },
   
@@ -158,7 +158,7 @@ async  initAllData(){
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.data.page._nextPageData();
       console.log("加载更多")
   },
 
