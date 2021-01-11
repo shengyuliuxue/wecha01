@@ -157,9 +157,14 @@ async  initAllData(){
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-    this.data.page._nextPageData();
-      console.log("加载更多")
+  onReachBottom: async function () {
+    const moredata = await this.data.page._nextPageData();
+      console.log(moredata);
+    if(!moredata){
+      return
+    }
+      wx.lin.renderWaterFlow(moredata.items)
+
   },
 
   /**
