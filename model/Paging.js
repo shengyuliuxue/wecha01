@@ -34,8 +34,7 @@ class Paging{
       this.start += this.count; 
     }else{
       this.start = pageData.total;
-    }
-    
+    }    
     console.log(pageData);
     return pageData;
   }
@@ -55,7 +54,7 @@ class Paging{
       if(!this.hasMoreData()){
         return;
       }
-     await this.getCurrentData();
+    return await this.getCurrentData();
   }
 
   hasMoreData(){

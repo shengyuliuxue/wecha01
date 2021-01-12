@@ -159,6 +159,7 @@ async  initAllData(){
    */
   onReachBottom: async function () {
     const moredata = await this.data.page._nextPageData();
+    console.log("moredata");
       console.log(moredata);
     if(!moredata){
       return
