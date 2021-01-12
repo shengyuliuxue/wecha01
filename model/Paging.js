@@ -59,7 +59,7 @@ class Paging{
 
   hasMoreData(){
     //判断是否有更多数据
-    if(this.currentPage < this.totalPage){
+    if(this.currentPage < this.totalPage-1){
       return true;
     }
     return false;
