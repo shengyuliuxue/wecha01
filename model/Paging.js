@@ -10,8 +10,9 @@ class Paging{
   currentPage;
   totalPage;
   historyData=[];
+  locker = false;
   currentPageData=[];
-  constructor({url, start=0, count=10,currentPage=0,totalPage=0}){
+  constructor({url, start=0, count=10,currentPage=1,totalPage=0}){
     this.url =  url;
     this.start = start;
     this.count = count;
@@ -22,9 +23,13 @@ class Paging{
   async getCurrentData(){
     //获取当前页数据
     //1 无数据 2 返回错误 3 返回数据比count小 
+    if(!this._getLocker()){
+      return;
+    }
     this._getCurrentReq();
     console.log(this.req);
     const pageData = await Http.request(this.req);
+    this.canRequest=true;
     if(pageData == null){
       return;
     }
@@ -36,6 +41,7 @@ class Paging{
       this.start = pageData.total;
     }    
     console.log(pageData);
+    this._releaseLocker();
     return pageData;
   }
 
@@ -65,6 +71,17 @@ class Paging{
     return false;
   }
 
+  _getLocker(){
+    if(this.locker){
+      return false;
+    }
+    this.locker = true;
+    return true;
+  }
+
+  _releaseLocker(){
+    this.locker = false;
+  }
 
 }
 
