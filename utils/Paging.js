@@ -1,6 +1,7 @@
 //根据URL不断获取页面信息
-import {Http} from "../utils/http"
+import {Http} from "./http"
 import {config} from "../config/config"
+
 
 class Paging{
   url;
@@ -12,12 +13,21 @@ class Paging{
   historyData=[];
   locker = false;
   currentPageData=[];
-  constructor({url, start=0, count=10,currentPage=1,totalPage=0}){
-    this.url =  url;
-    this.start = start;
-    this.count = count;
-    this.currentPage=currentPage;
-    this.totalPage=totalPage;
+  moreData=true;
+  accumulator=[];
+
+  // constructor({url, start=0, count=10,currentPage=1,totalPage=0}){
+  //   this.url =  url;
+  //   this.start = start;
+  //   this.count = count;
+  //   this.currentPage=currentPage;
+  //   this.totalPage=totalPage;
+  // }
+
+  constructor(req, count = 10, start = 0){
+    this.start = start
+    this.count = count
+    this.url = req.url 
   }
   
   async getCurrentData(){
@@ -69,6 +79,57 @@ class Paging{
       return true;
     }
     return false;
+  }
+
+  async getMoreData(){
+    //getLocker
+    //request
+    //releaseLocker
+    if(!this.moreData){
+      return
+    }
+    if(!this._getLocker){
+      return
+    }
+    const data = await this._actualGetData()
+    this._releaseLocker()
+    return data 
+  }
+
+  async _actualGetData(){
+    const req = this._getCurrentReq()
+    let paging = await Http.request(req)
+    if(!paging){
+      return null
+    }
+    if(paging.total === 0){
+      return {
+        empty: true,
+        items:[],
+        moreData:false,
+        accumulator:[]
+      }
+    }
+    this.moreData = this._moreData(paging.total_page, paging.page)
+    if(this.moreData){
+      this.start += this.count
+      this._accumulate(paging.items)
+    return{
+      empty:false,
+      items:paging.items,
+      moreData:true,
+      accumulator:this.accumulator
+    }
+   }
+  }
+
+
+  _moreData(totalPage, pageNum){
+    return pageNum < totalPage
+  }
+
+  _accumulate(items){
+    this.accumulator = this.accumulator.concat(items)
   }
 
   _getLocker(){

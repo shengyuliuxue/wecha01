@@ -5,7 +5,8 @@ import {Banner} from "../../model/Banner"
 import {Grid} from "../../model/Grid"
 import {Activity} from "../../model/Activity"
 import {Http} from "../../utils/http"
-import {Paging} from "../../model/Paging"
+import {Paging} from "../../utils/Paging"
+import {SpuPaging} from "../../model/SpuPaging"
 
 Page({
 
@@ -25,6 +26,26 @@ Page({
       page:null
   },
 
+  onLoad: async function (options) {
+
+    this.initAllData();
+    //debugger;
+    const initdata =  await this.initBottomSpuList()
+    wx.lin.renderWaterFlow(initdata.items, false, ()=>{
+      console.log("666")
+    })
+    console.log(initdata)
+ },
+
+  async initBottomSpuList(){
+   
+    this.page = await SpuPaging.getLatest()
+    const data = await this.page.getMoreData()
+    if(!data){
+      return
+    }  
+    return data
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -35,6 +56,7 @@ async  initAllData(){
     //  const ThemeE = themes.data.find(t=>t.name==='t-2');
 
     //  console.log(themes);
+    //this.data.page = await SpuPaging.getLatest();
     const th = new Theme();
     await th.getThemes();
     const themeESpuList = await Theme.getThemeLocationESpu()
@@ -72,52 +94,32 @@ async  initAllData(){
  
      })
 
+     //this.setData({
+      //  page: new Paging({
+      //    url:'v1/spu/latest',
+      //    start:0,
+      //    count:5
+      //  })
+      //page: SpuPaging.getLatest()
+     //});
 
+     //const spudata = await this.data.page.getCurrentData();
+     //const spudata = await this.data.page.getMoreData();
 
-     this.setData({
-       page: new Paging({
-         url:'v1/spu/latest',
-         start:0,
-         count:5
-       })
-     });
+    //  console.log(spudata.items);
+    //  this.setData({
+    //    demo: spudata.items
+    //  })
 
-     const spudata = await this.data.page.getCurrentData();
-     console.log(spudata.items);
-     this.setData({
-       demo: spudata.items
-     })
-
-     wx.lin.renderWaterFlow(this.data.demo, false, ()=>{
-      console.log('渲染成功')
-    })
-    
-    // const moredata = await this.data.page._nextPageData();
-    // console.log(moredata);
-
-    
-
-    //  const paging = new Paging({
-    //      url:'v1/spu/latest',
-    //      start:0,
-    //      count:5
-    //    })
-
-    //  await paging.getCurrentData();  
-     
-    //  await paging._nextPageData();
-     
-    //  await paging._nextPageData();
+    //  wx.lin.renderWaterFlow(this.data.demo, false, ()=>{
+    //   console.log('渲染成功')
+    // })
+   
     
   },
   
 
 
-  onLoad: function (options) {
-
-     this.initAllData();
-
-  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -158,14 +160,14 @@ async  initAllData(){
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: async function () {
-    const moredata = await this.data.page._nextPageData();
-    console.log("moredata");
-      //console.log(moredata);
+   const moredata = await this.page.getMoreData();  
+    console.log(this.page.moreData);
     if(!moredata){
       return
     }
-      wx.lin.renderWaterFlow(moredata.items)
-
+    wx.lin.renderWaterFlow(moredata.items, false, ()=>{
+      console.log(this.page.accumulator)
+    })
   },
 
   /**
