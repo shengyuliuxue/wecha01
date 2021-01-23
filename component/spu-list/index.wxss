@@ -1,6 +1,6 @@
 /* component/spu-list/index.wxss */
 .life-container {
-  width: 350rpx !important;
+  width: 340rpx !important;
   padding: 0 0 20rpx 0 !important;
   background-color: #fff !important;
   box-shadow: 0px 8rpx 20rpx 0px rgba(9, 36, 66, 0.04) !important;
@@ -10,8 +10,8 @@
 }
 
 .life-img {
-  width: 350rpx !important;
-  height: 380rpx !important;
+  width: 320rpx !important;
+  height: 340rpx !important;
 }
 
 .life-product-contianer {
@@ -35,4 +35,58 @@
   margin-top: 15rpx;
   display: flex;
   flex-wrap: wrap;
+}
+
+.tags{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8rpx;
+  margin-top: 6rpx;
+  flex-wrap:wrap;
+}
+
+.container{
+  width: 340rpx;
+  display:flex;
+  flex-direction: column;
+  box-shadow: 0rpx 0rpx 8rpx 0rpx rgba(119, 163, 149, 0.2);
+  margin-bottom: 30rpx;
+  background-color: #ffffff;
+}
+
+.content-container{
+  display:flex;
+  flex-direction: column;
+  padding:16rpx 16rpx 22rpx 16rpx
+}
+
+.l-tag{
+  background-color: #DCEBE6 !important;
+  color:#157658 !important;
+  height:36rpx !important;
+  padding-left:6rpx !important;
+  padding-right:6rpx !important;
+  margin-right: 5rpx !important;
+}
+
+.title{
+  font-size:28rpx;
+  color:"#333333";
+}
+.img{
+  /* width: 340rpx; */
+  /* height: 360rpx; */
+}
+
+.container{
+  display: flex;
+  
+}
+.price-row{
+  display: flex;
+  flex-direction: row;
+}
+
+.discount-price{
+  margin-left:20rpx;
 }

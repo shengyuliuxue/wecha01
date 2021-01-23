@@ -23,7 +23,8 @@ Page({
       themeF:null,
       bannerG:null,
       demo: null,
-      page:null
+      page:null,
+      loadingType:"loading"
   },
 
   onLoad: async function (options) {
@@ -161,13 +162,15 @@ async  initAllData(){
    */
   onReachBottom: async function () {
    const moredata = await this.page.getMoreData();  
-    console.log(this.page.moreData);
     if(!moredata){
       return
     }
-    wx.lin.renderWaterFlow(moredata.items, false, ()=>{
-      console.log(this.page.accumulator)
-    })
+    wx.lin.renderWaterFlow(moredata.items)
+    if(!this.page.moredata){
+      this.setData({
+        loadingType:"end"
+      })
+    }
   },
 
   /**

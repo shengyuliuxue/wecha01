@@ -1,5 +1,8 @@
 <!--pages/home.wxml-->
-<view class="container">
+<l-loadmore show 
+end-text="--盛钰作品--"
+type="{{loadingType}}">
+<view slot="content" class="container">
 <image class="topTheme" src="{{topTheme.entrance_img}}" 
 mode='widthFix'></image> 
 <swiper class="swiper-img" indicator-dots="true" indicator-active-color="#157658" autoplay circular>
@@ -33,3 +36,4 @@ mode='widthFix'></image>
   </view>
 
 </view>
+</l-loadmore>
