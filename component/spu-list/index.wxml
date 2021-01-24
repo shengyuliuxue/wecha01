@@ -17,7 +17,7 @@
 </l-card>  -->
 
 
-<view class="container">
+<view class="container" bindtap="detail" data-id="{{data.id}}">
 <image bind:load="onImgLoad" style="width:{{w}}rpx; height:{{h}}rpx" class="img" src="{{data.img}}"></image>
   <view class="content-container">
     <text class="title">{{ data.title }}</text>
