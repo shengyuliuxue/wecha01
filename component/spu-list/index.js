@@ -33,9 +33,7 @@ Component({
    */
   methods: {
     onImgLoad(event){
-      const {width,height} = event.detail
-      console.log(width, height)
-     
+      const {width,height} = event.detail       
       this.setData({
         w:340,
         h:340 * height / width
