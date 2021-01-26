@@ -35,18 +35,33 @@ Page({
     if(!detail.sku_list){
        return
     }
-    var temp = new Array()
+    let temp = new Array()
     
-    for(var i=0;i < detail.sku_list.length; i++){
+    for(let i=0;i < detail.sku_list.length; i++){
       temp[i] = new Array()
-      for(var j=0; j < detail.sku_list[i].specs.length; j++){
+      for(let j=0; j < detail.sku_list[i].specs.length; j++){
 
-         temp[i][j]=detail.sku_list[i].specs[j]
+         temp[i][j]=detail.sku_list[i].specs[j].value 
          
       }
     }
-    console.log(temp)
+    //console.log(temp)
+    this.matrix(temp,3,2)
+    //return temp
   },
+
+  matrix(itemArray, rowNum, colNum){
+    let matrixArray = new Array()
+    for(let j=0; j < colNum; j++){
+      let temp = new Array()
+      for(let i=0; i < rowNum; i++){
+        temp.push(itemArray[i][j])
+      }
+      matrixArray[j]=temp
+    }
+    console.log(matrixArray)
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
