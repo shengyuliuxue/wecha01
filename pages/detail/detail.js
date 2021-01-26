@@ -10,7 +10,6 @@ Page({
       id:null  
   },
   
-   
   /**
    * 生命周期函数--监听页面加载
    */
@@ -36,17 +35,16 @@ Page({
        return
     }
     let temp = new Array()
-    
-    for(let i=0;i < detail.sku_list.length; i++){
+    const row = detail.sku_list.length
+    const column = detail.sku_list[0].specs.length
+    for(let i=0;i < row; i++){
       temp[i] = new Array()
-      for(let j=0; j < detail.sku_list[i].specs.length; j++){
-
+      for(let j=0; j < column; j++){
          temp[i][j]=detail.sku_list[i].specs[j].value 
-         
       }
     }
     //console.log(temp)
-    this.matrix(temp,3,2)
+    this.matrix(temp,row,column)
     //return temp
   },
 
