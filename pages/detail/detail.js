@@ -8,7 +8,7 @@ Page({
    */
   data: {
       id:null,
-      array:[]     
+      keyvalue:null     
   },
   
   /**
@@ -27,9 +27,10 @@ Page({
       })
       console.log(productDetail)
       //先提取成二维数组，再转秩
-     const array = this.getArray(productDetail)
+     const object = this.getArray(productDetail)
+     console.log(object)
       this.setData({
-        array: array
+        keyvalue: object
       })
   },
 
@@ -52,11 +53,22 @@ Page({
          }
       }
     }
-    console.log(title)
+    //console.log(title)
     const matrixArray =  this.matrix(temp,row,column)
-    console.log(matrixArray)
-    
+    //console.log(matrixArray) 
+    const keyValueObject = this.keyValuePair(title, matrixArray)
+    //console.log(keyValueObject)
+    return keyValueObject
+  },
 
+  keyValuePair(keyArr, valArr){
+    let data = {};
+    for(let i=0; i<keyArr.length; i++){
+      let key = keyArr[i];
+      let value = valArr[i];
+      data[key]=value; 
+    }
+    return data;
   },
 
   matrix(itemArray, rowNum, colNum){

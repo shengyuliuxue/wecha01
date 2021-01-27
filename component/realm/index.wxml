@@ -4,6 +4,7 @@
     <image></image>
   </view>
   <block wx:for="{{data}}">
+    <view>{{data.key}}</view>
     <fence array="{{item}}"></fence>
   </block>
   <view class="counter-container"></view>
