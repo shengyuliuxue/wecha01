@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-      id:null  
+      id:null,
+      array:[]     
   },
   
   /**
@@ -26,7 +27,10 @@ Page({
       })
       console.log(productDetail)
       //先提取成二维数组，再转秩
-      this.getArray(productDetail)
+     const array = this.getArray(productDetail)
+      this.setData({
+        array: array
+      })
   },
 
   getArray(detail){
@@ -37,15 +41,22 @@ Page({
     let temp = new Array()
     const row = detail.sku_list.length
     const column = detail.sku_list[0].specs.length
+    const title = new Array()
+    const resultArray = new Array()
     for(let i=0;i < row; i++){
       temp[i] = new Array()
       for(let j=0; j < column; j++){
-         temp[i][j]=detail.sku_list[i].specs[j].value 
+         temp[i][j]=detail.sku_list[i].specs[j].value
+         if(title.length < column){
+           title.push(detail.sku_list[i].specs[j].key) 
+         }
       }
     }
-    //console.log(temp)
-    this.matrix(temp,row,column)
-    //return temp
+    console.log(title)
+    const matrixArray =  this.matrix(temp,row,column)
+    console.log(matrixArray)
+    
+
   },
 
   matrix(itemArray, rowNum, colNum){
@@ -53,11 +64,12 @@ Page({
     for(let j=0; j < colNum; j++){
       let temp = new Array()
       for(let i=0; i < rowNum; i++){
-        temp.push(itemArray[i][j])
+        !temp.includes(itemArray[i][j]) && temp.push(itemArray[i][j])
       }
       matrixArray[j]=temp
     }
-    console.log(matrixArray)
+    //console.log(matrixArray)
+    return matrixArray
   },
 
   /**

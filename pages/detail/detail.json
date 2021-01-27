@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "realm":"/component/realm/index"
+  }
 }

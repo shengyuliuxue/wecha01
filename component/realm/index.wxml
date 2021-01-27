@@ -1,0 +1,11 @@
+<!--component/realm/index.wxml-->
+<view class="container">
+  <view>
+    <image></image>
+  </view>
+  <block wx:for="{{data}}">
+    <fence array="{{item}}"></fence>
+  </block>
+  <view class="counter-container"></view>
+  
+</view>
