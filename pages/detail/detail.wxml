@@ -1,3 +1,3 @@
 <!--pages/detail.wxml-->
-
-<realm data="{{keyvalue}}"> </realm>
+<text>pages/detail.wxml</text>
+<realm data="{{productArray}}"> </realm>

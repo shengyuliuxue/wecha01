@@ -1,5 +1,6 @@
 // pages/detail.js
 import{Http} from "../../utils/http"
+import{FenceObject} from "../../model/FenceObject"
 
 Page({
 
@@ -8,7 +9,8 @@ Page({
    */
   data: {
       id:null,
-      keyvalue:null     
+      keyvalue:null,
+      productArray:[]     
   },
   
   /**
@@ -27,11 +29,13 @@ Page({
       })
       console.log(productDetail)
       //先提取成二维数组，再转秩
-     const object = this.getArray(productDetail)
-     console.log(object)
-      this.setData({
-        keyvalue: object
+     const objectArray = this.getArray(productDetail)
+     console.log("objectArray")
+     console.log(objectArray)
+     $this.setData({
+        productArray: objectArray
       })
+
   },
 
   getArray(detail){
@@ -56,9 +60,12 @@ Page({
     //console.log(title)
     const matrixArray =  this.matrix(temp,row,column)
     //console.log(matrixArray) 
-    const keyValueObject = this.keyValuePair(title, matrixArray)
+    //const keyValueObject = this.keyValuePair(title, matrixArray)
+    const fenceArray = this.keyValueObject(title, matrixArray)
+    //console.log("fenceArray")
+    //console.log(fenceArray)
     //console.log(keyValueObject)
-    return keyValueObject
+    return fenceArray
   },
 
   keyValuePair(keyArr, valArr){
@@ -69,6 +76,18 @@ Page({
       data[key]=value; 
     }
     return data;
+  },
+
+  keyValueObject(keyArr, valArr){
+    let dataArray = [];
+    for(let i=0; i<keyArr.length; i++){
+      let key = keyArr[i];
+      let value = valArr[i];
+      //data[key]=value; 
+      let  fence = new FenceObject(key, value);
+      dataArray.push(fence);
+    }
+    return dataArray;
   },
 
   matrix(itemArray, rowNum, colNum){
