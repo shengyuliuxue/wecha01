@@ -1,5 +1,3 @@
-
-
 class FenceObject{
     constructor(name, dataArray){
         this.name = name;

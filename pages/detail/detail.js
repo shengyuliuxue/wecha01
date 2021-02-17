@@ -57,14 +57,8 @@ Page({
          }
       }
     }
-    //console.log(title)
     const matrixArray =  this.matrix(temp,row,column)
-    //console.log(matrixArray) 
-    //const keyValueObject = this.keyValuePair(title, matrixArray)
     const fenceArray = this.keyValueObject(title, matrixArray)
-    //console.log("fenceArray")
-    //console.log(fenceArray)
-    //console.log(keyValueObject)
     return fenceArray
   },
 
