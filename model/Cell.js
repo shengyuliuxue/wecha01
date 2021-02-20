@@ -1,8 +1,8 @@
 
 class Cell{
   title 
-  constructor(spec){
-     this.title = spec.value 
+  constructor(title){
+     this.title = title
   }
 }
 
