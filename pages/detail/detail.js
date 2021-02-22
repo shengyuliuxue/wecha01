@@ -1,6 +1,8 @@
 // pages/detail.js
 import{Http} from "../../utils/http"
 import{FenceObject} from "../../model/FenceObject"
+import{Cell} from "../../model/Cell"
+import{SkuCode} from "../../component/models/SkuCode"
 
 Page({
 
@@ -10,7 +12,8 @@ Page({
   data: {
       id:null,
       keyvalue:null,
-      productArray:[]     
+      productArray:[],
+      skucode:null     
   },
   
   /**
@@ -28,12 +31,21 @@ Page({
         url:`v1/spu/id/${this.data.id}/detail`
       })
       console.log(productDetail)
+      if(!productDetail.sku_list){
+        return
+      }
+      let sku = new SkuCode(productDetail.sku_list)
+      console.log("sku")
+      console.log(sku)
+      sku._initCodePathDict()
+      console.log(sku.codeDict)
       //先提取成二维数组，再转秩
      const objectArray = this.getArray(productDetail)
      console.log("objectArray")
      console.log(objectArray)
      $this.setData({
-        productArray: objectArray
+        productArray: objectArray,
+        skucode:sku
       })
 
   },
@@ -43,6 +55,9 @@ Page({
     if(!detail.sku_list){
        return
     }
+    //skucode
+
+    //
     let temp = new Array()
     const row = detail.sku_list.length
     const column = detail.sku_list[0].specs.length
@@ -78,7 +93,14 @@ Page({
       let key = keyArr[i];
       let value = valArr[i];
       //data[key]=value; 
-      let  fence = new FenceObject(key, value);
+      let cellArray = []
+      let cellNum = value.length
+      for(let j=0; j<cellNum; j++){
+        let cell = new Cell(value[j])
+        cellArray.push(cell)
+      }
+      //
+      let  fence = new FenceObject(key, cellArray);
       dataArray.push(fence);
     }
     return dataArray;
