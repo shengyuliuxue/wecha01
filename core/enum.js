@@ -3,3 +3,7 @@ const CellStatus = {
   SELECTED:"selected",
   WAITING:"waiting"
 }
+
+export{
+  CellStatus
+}
