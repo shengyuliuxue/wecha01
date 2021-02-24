@@ -1,5 +1,5 @@
-<view class="container s-outer" bindtap="choose">
-  <view class="inner-container s-inner">
+<view data-title="{{cell.title}}" data-status="{{cell.status}}" class="container {{outerclass}} " bindtap="choose">
+  <view class="inner-container {{innerclass}}">
     <text>{{cell.title}}</text>
   </view>
 </view>
