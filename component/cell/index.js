@@ -1,4 +1,6 @@
 // component/cell/index.js
+import {CellStatus} from "../../core/enum"
+
 Component({
   /**
    * 组件的属性列表
@@ -20,21 +22,41 @@ Component({
    */
   methods: {
     choose: function(event){
-      console.log(event.currentTarget.dataset.title);
-      console.log(event.currentTarget.dataset.status);
+     
      if (event.currentTarget.dataset.status === "waiting"){
+       
+       //this.cell.status = CellStatus.SELECTED
        this.setData({
           outerclass:"s-outer",
-          innerclass:"s-inner"
+          innerclass:"s-inner",
+          cell: { 
+            title: event.currentTarget.dataset.title,
+            status: CellStatus.SELECTED
+          }
        })
+      
      }
      if (event.currentTarget.dataset.status === "selected"){
+      //this.cell.status = CellStatus.WAITING
       this.setData({
          outerclass:"",
-         innerclass:""
+         innerclass:"",
+         cell: { 
+          title: event.currentTarget.dataset.title,
+          status: CellStatus.WAITING
+        }
       })
+     
     }
 
     }
-  }
+  },
+
+   observers:{
+      'cell': function(cell){
+        console.log(cell)
+      }
+   }
+
+
 })
