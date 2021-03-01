@@ -11,7 +11,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+     choosenCode:[] 
   },
 
   /**
@@ -19,7 +19,13 @@ Component({
    */
   methods: {
       cellcode: function(event){
+          console.log("event.detail");
           console.log(event.detail);
+          let code = this.data.choosenCode.concat(event.detail.code);
+          this.setData({
+            choosenCode: code 
+          })
+          console.log(this.data.choosenCode);
       }
   }
 })
