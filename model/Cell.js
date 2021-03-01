@@ -3,8 +3,10 @@ import {CellStatus} from "../core/enum"
 class Cell{
   status 
   title 
-  constructor(title){
+  code 
+  constructor(title,code){
      this.title = title
+     this.code = code 
      this.status = CellStatus.WAITING
   }
 }

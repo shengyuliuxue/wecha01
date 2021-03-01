@@ -3,9 +3,11 @@
   <view>
     <image></image>
   </view>
-  <block wx:for="{{data}}">
-    <view>{{item.name}}</view>
-    <fence array="{{item.dataArray}}"></fence>
-  </block>
+  <view bindcellevent="cellcode">
+    <block wx:for="{{data}}">
+      <view>{{item.name}}</view>
+      <fence array="{{item.dataArray}}"></fence>
+    </block>
+  </view>
   <view class="counter-container"></view>  
 </view>
