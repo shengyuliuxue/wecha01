@@ -23,32 +23,39 @@ Component({
   methods: {
     choose: function(event){
      
-     if (event.currentTarget.dataset.status === "waiting"){
+     if (this.properties.cell.status === "waiting"){
        
-       //this.cell.status = CellStatus.SELECTED
+       this.properties.cell.status = CellStatus.SELECTED
        this.setData({
           outerclass:"s-outer",
           innerclass:"s-inner",
-          cell: { 
-            title: event.currentTarget.dataset.title,
-            status: CellStatus.SELECTED
-          }
+          // cell: { 
+          //   title: event.currentTarget.dataset.title,
+          //   status: CellStatus.SELECTED
+          // }
        })
-      
-     }
-     if (event.currentTarget.dataset.status === "selected"){
-      //this.cell.status = CellStatus.WAITING
+        //return
+     }else{
+       if (this.properties.cell.status === "selected"){
+      this.properties.cell.status = CellStatus.WAITING
       this.setData({
          outerclass:"",
          innerclass:"",
-         cell: { 
-          title: event.currentTarget.dataset.title,
-          status: CellStatus.WAITING
-        }
+        //  cell: { 
+        //   title: event.currentTarget.dataset.title,
+        //   status: CellStatus.WAITING
+        // }
       })
-     
+        //return 
+      }
     }
+   
+    console.log(this.properties.cell)
 
+    this.triggerEvent('cellevent',
+        {code: this.properties.cell.code}, 
+        { bubbles: true, composed: true });
+        
     }
   },
 

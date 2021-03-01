@@ -13,7 +13,8 @@ Page({
       id:null,
       keyvalue:null,
       productArray:[],
-      skucode:null     
+      skucode:null,
+      skuDict:null     
   },
   
   /**
@@ -22,6 +23,7 @@ Page({
   onLoad: async function (options) {
       const $this = this
       const eventChannel = this.getOpenerEventChannel()
+      $this.skuDict = new Map() 
       eventChannel.on('acceptDataFromOpenerPage', function(receiveData){  
         $this.setData({
           id: receiveData.id
@@ -66,11 +68,17 @@ Page({
     for(let i=0;i < row; i++){
       temp[i] = new Array()
       for(let j=0; j < column; j++){
-         temp[i][j]=detail.sku_list[i].specs[j].value
+         temp[i][j] =detail.sku_list[i].specs[j].value;     
          if(title.length < column){
            title.push(detail.sku_list[i].specs[j].key) 
          }
+         let id = detail.sku_list[i].specs[j].key_id;
+         let valueid = detail.sku_list[i].specs[j].value_id;
+         let idstr = id + "#" + valueid;
+         this.skuDict.set(detail.sku_list[i].specs[j].value, idstr);
       }
+      console.log("skuDict");
+      console.log(this.skuDict);
     }
     const matrixArray =  this.matrix(temp,row,column)
     const fenceArray = this.keyValueObject(title, matrixArray)
@@ -96,7 +104,8 @@ Page({
       let cellArray = []
       let cellNum = value.length
       for(let j=0; j<cellNum; j++){
-        let cell = new Cell(value[j])
+        let code = this.skuDict.get(value[j])
+        let cell = new Cell(value[j],code)
         cellArray.push(cell)
       }
       //
