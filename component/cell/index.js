@@ -53,7 +53,10 @@ Component({
     console.log(this.properties.cell)
 
     this.triggerEvent('cellevent',
-        {code: this.properties.cell.code}, 
+        {
+          code: this.properties.cell.code,
+          status: this.properties.cell.status
+        }, 
         { bubbles: true, composed: true });
         
     }
