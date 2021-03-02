@@ -64,7 +64,7 @@ Component({
 
    observers:{
       'cell': function(cell){
-        console.log(cell)
+        console.log("********************")
       }
    }
 

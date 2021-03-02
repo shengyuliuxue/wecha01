@@ -1,5 +1,7 @@
 // component/realm/index.js
 import {SkuPending} from "../../model/SkuPending"
+import{Cell} from "../../model/Cell"
+
 Component({
   /**
    * 组件的属性列表
@@ -46,6 +48,7 @@ Component({
             this.data.choosenCode.deletecell(event.detail.code);
           }
           console.log(this.data.choosenCode.pending);
+          //console.log(this.properties.data);
       }
   },
 
@@ -54,6 +57,7 @@ Component({
       if(!data){
         return
       }
+     
       let skupend = new SkuPending();
       this.setData({
         choosenCode : skupend
