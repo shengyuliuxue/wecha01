@@ -3,6 +3,7 @@ import{Http} from "../../utils/http"
 import{FenceObject} from "../../model/FenceObject"
 import{Cell} from "../../model/Cell"
 import{SkuCode} from "../../component/models/SkuCode"
+import{SkuPending} from "../../model/SkuPending"
 
 Page({
 
@@ -14,7 +15,8 @@ Page({
       keyvalue:null,
       productArray:[],
       skucode:null,
-      skuDict:null     
+      skuDict:null,
+     // choosenCode:null      
   },
   
   /**
@@ -24,6 +26,7 @@ Page({
       const $this = this
       const eventChannel = this.getOpenerEventChannel()
       $this.skuDict = new Map() 
+     // $this.choosenCode = new SkuPending()
       eventChannel.on('acceptDataFromOpenerPage', function(receiveData){  
         $this.setData({
           id: receiveData.id
