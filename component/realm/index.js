@@ -1,6 +1,7 @@
 // component/realm/index.js
 import {SkuPending} from "../../model/SkuPending"
 import{Cell} from "../../model/Cell"
+import{Judger} from "../../model/Judger"
 
 Component({
   /**
@@ -14,7 +15,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-     choosenCode : Object
+     choosenCode : Object,
+     judger : Object
   },
 
   /**
@@ -48,7 +50,7 @@ Component({
             this.data.choosenCode.deletecell(event.detail.code);
           }
           console.log(this.data.choosenCode.pending);
-          //console.log(this.properties.data);
+          this.data.judger.getkeys()
       }
   },
 
@@ -59,8 +61,10 @@ Component({
       }
      
       let skupend = new SkuPending();
+      let judge = new Judger();
       this.setData({
-        choosenCode : skupend
+        choosenCode : skupend,
+        judger : judge
       })
     }
   }
