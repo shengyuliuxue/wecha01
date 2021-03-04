@@ -3,8 +3,9 @@ class Judger{
   constructor(){
 
   }
-  getkeys(){
-     console.log("judger getkeys")
+  getkeys(code){
+     console.log("getkeys")
+     console.log(code)
   }
 }
 

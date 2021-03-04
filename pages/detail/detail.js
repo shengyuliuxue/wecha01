@@ -16,6 +16,7 @@ Page({
       productArray:[],
       skucode:null,
       skuDict:null,
+      codeKeys:Array
      // choosenCode:null      
   },
   
@@ -68,6 +69,7 @@ Page({
     const column = detail.sku_list[0].specs.length
     const title = new Array()
     const resultArray = new Array()
+    let keysets = new Set()
     for(let i=0;i < row; i++){
       temp[i] = new Array()
       for(let j=0; j < column; j++){
@@ -75,13 +77,17 @@ Page({
          if(title.length < column){
            title.push(detail.sku_list[i].specs[j].key) 
          }
-         let id = detail.sku_list[i].specs[j].key_id;
+         let id = detail.sku_list[i].specs[j].key_id;       
          let valueid = detail.sku_list[i].specs[j].value_id;
          let idstr = id + "#" + valueid;
          this.skuDict.set(detail.sku_list[i].specs[j].value, idstr);
+         keysets.add(id);         
       }
-      console.log("skuDict");
-      console.log(this.skuDict);
+      let tempkey = Array.from(keysets); 
+      this.codeKeys = tempkey;
+      this.setData({
+        codeKeys:tempkey
+      })
     }
     const matrixArray =  this.matrix(temp,row,column)
     const fenceArray = this.keyValueObject(title, matrixArray)
