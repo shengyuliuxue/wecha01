@@ -8,7 +8,8 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    data:Array  
+    data:Array,
+    codeKeys:Array
   },
 
   /**
@@ -50,7 +51,9 @@ Component({
             this.data.choosenCode.deletecell(event.detail.code);
           }
           console.log(this.data.choosenCode.pending);
-          this.data.judger.getkeys()
+          console.log("this.properties.codeKeys");
+          console.log(this.properties.codeKeys)
+          this.data.judger.getkeys(this.properties.codeKeys)
       }
   },
 
