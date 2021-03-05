@@ -37,7 +37,7 @@ Component({
             // this.setData({
             //   choosenCode: code 
             // })    
-            this.data.choosenCode.insertCell(event.detail.code);
+            this.data.choosenCode.insertCell(event.detail.code);         
             
           }
           if(status === "waiting"){
@@ -52,8 +52,9 @@ Component({
           }
           console.log(this.data.choosenCode.pending);
           console.log("this.properties.codeKeys");
-          console.log(this.properties.codeKeys)
-          this.data.judger.getkeys(this.properties.codeKeys)
+          console.log(this.properties.codeKeys);          
+          this.data.judger.refreshStatus();
+         
       }
   },
 
@@ -64,7 +65,7 @@ Component({
       }
      
       let skupend = new SkuPending();
-      let judge = new Judger();
+      let judge = new Judger(this.properties.data, this.properties.codeKeys);
       this.setData({
         choosenCode : skupend,
         judger : judge
