@@ -17,7 +17,8 @@ Component({
    */
   data: {
      choosenCode : Object,
-     judger : Object
+     judger : Object,
+     codeArray: Array
   },
 
   /**
@@ -25,11 +26,7 @@ Component({
    */
   methods: {
       cellcode: function(event){
-          
-          console.log("event.detail");
-          console.log(event.detail);
           let status = event.detail.status;
-          //console.log(status);
           if(status === "selected"){
             // let code = this.data.choosenCode.concat(event.detail.code);
             // let codeSet = new Set(code)
@@ -38,7 +35,10 @@ Component({
             //   choosenCode: code 
             // })    
             this.data.choosenCode.insertCell(event.detail.code);         
-            
+            this.setData({
+              codeArray: this.data.choosenCode.pending
+            })
+          
           }
           if(status === "waiting"){
             // let code = this.data.choosenCode;
@@ -49,11 +49,12 @@ Component({
             //   choosenCode: code
             // })
             this.data.choosenCode.deletecell(event.detail.code);
+            this.setData({
+              codeArray: this.data.choosenCode.pending
+            })
           }
-          console.log(this.data.choosenCode.pending);
-          console.log("this.properties.codeKeys");
-          console.log(this.properties.codeKeys);          
-          this.data.judger.refreshStatus();
+                 
+          this.data.judger.refreshStatus(this.data.choosenCode.pending);
          
       }
   },
@@ -70,6 +71,15 @@ Component({
         choosenCode : skupend,
         judger : judge
       })
+    },
+
+    'codeArray': function(codeArray){
+        if(!codeArray){
+          return
+        }
+        console.log("codeArray changed");
+        console.log(codeArray);
+        
     }
   }
 
