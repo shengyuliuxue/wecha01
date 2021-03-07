@@ -77,7 +77,7 @@ Page({
          if(title.length < column){
            title.push(detail.sku_list[i].specs[j].key) 
          }
-         let id = detail.sku_list[i].specs[j].key_id;       
+         let id = detail.sku_list[i].specs[j].key_id.toString();       
          let valueid = detail.sku_list[i].specs[j].value_id;
          let idstr = id + "#" + valueid;
          this.skuDict.set(detail.sku_list[i].specs[j].value, idstr);
