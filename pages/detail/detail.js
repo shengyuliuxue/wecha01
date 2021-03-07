@@ -36,19 +36,19 @@ Page({
       const productDetail = await Http.request({
         url:`v1/spu/id/${this.data.id}/detail`
       })
-      console.log(productDetail)
+      //console.log(productDetail)
       if(!productDetail.sku_list){
         return
       }
       let sku = new SkuCode(productDetail.sku_list)
-      console.log("sku")
-      console.log(sku)
+      //console.log("sku")
+      //console.log(sku)
       sku._initCodePathDict()
-      console.log(sku.codeDict)
+      //console.log(sku.codeDict)
       //先提取成二维数组，再转秩
      const objectArray = this.getArray(productDetail)
-     console.log("objectArray")
-     console.log(objectArray)
+     //console.log("objectArray")
+     //console.log(objectArray)
      $this.setData({
         productArray: objectArray,
         skucode:sku
@@ -77,7 +77,7 @@ Page({
          if(title.length < column){
            title.push(detail.sku_list[i].specs[j].key) 
          }
-         let id = detail.sku_list[i].specs[j].key_id;       
+         let id = detail.sku_list[i].specs[j].key_id.toString();       
          let valueid = detail.sku_list[i].specs[j].value_id;
          let idstr = id + "#" + valueid;
          this.skuDict.set(detail.sku_list[i].specs[j].value, idstr);

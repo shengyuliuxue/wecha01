@@ -33,20 +33,20 @@ class SkuCode{
     let num = this.codeArray.length
     for(let i=0; i<num; i++){
         let codearrays = this.codeArray[i].split("#")
-        console.log("codearrays")
-        console.log(codearrays)
+        //console.log("codearrays")
+        //console.log(codearrays)
         for(let j=1; j<=codearrays.length; j++){
           let result = combination(codearrays, j)
           result = result.map((item)=>{
                return item.join("#")
           })
           tempArray = tempArray.concat(result)
-          console.log("resultArray.....")
-          console.log(tempArray)
+          //console.log("resultArray.....")
+          //console.log(tempArray)
         }        
     }
-    console.log("codeDict")
-    console.log(this.codeDict)
+    //console.log("codeDict")
+    //console.log(this.codeDict)
   }
    
 }
