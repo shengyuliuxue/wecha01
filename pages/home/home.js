@@ -33,9 +33,9 @@ Page({
     //debugger;
     const initdata =  await this.initBottomSpuList()
     wx.lin.renderWaterFlow(initdata.items, false, ()=>{
-      console.log("666")
+      //console.log("666")
     })
-    console.log(initdata)
+    //console.log(initdata)
  },
 
   async initBottomSpuList(){

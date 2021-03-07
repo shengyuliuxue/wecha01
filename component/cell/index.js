@@ -50,7 +50,7 @@ Component({
       }
     }
    
-    console.log(this.properties.cell)
+    //console.log(this.properties.cell)
 
     this.triggerEvent('cellevent',
         {
@@ -64,7 +64,7 @@ Component({
 
    observers:{
       'cell': function(cell){
-        console.log("********************")
+        //console.log("********************")
       }
    }
 

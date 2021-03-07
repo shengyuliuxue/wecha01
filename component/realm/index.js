@@ -77,8 +77,8 @@ Component({
         if(!codeArray){
           return
         }
-        console.log("codeArray changed");
-        console.log(codeArray);
+        //console.log("codeArray changed");
+        //console.log(codeArray);
         
     }
   }

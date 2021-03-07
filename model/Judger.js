@@ -1,3 +1,4 @@
+import {combination} from "../utils/util"
 
 class Judger{
   cellArray
@@ -6,21 +7,16 @@ class Judger{
   constructor(cellArray,codeArray){
     let tempArray = new Array();
     for(let array of cellArray){
-      console.log("----------")
-      console.log(array.dataArray)
       tempArray.push(array.dataArray)
     }
-    console.log("tempArray")
-    console.log(tempArray);
+    this.cellArray = tempArray;
     this.codeArray = codeArray;
     this.codeSet = new Set(codeArray);
-    console.log("cellarray")
-    console.log(cellArray)
   }
 
   getkeys(code){
-     console.log("getkeys")
-     console.log(code)
+     //console.log("getkeys")
+     //console.log(code)
      
   }
 
@@ -30,29 +26,55 @@ class Judger{
     let a = this.codeArray
     let RowNotChoosen= a.filter(x=>!choosenRow.includes(x.toString()))
 
-    // console.log("-----------------")
-    // console.log(this.codeArray)
-    // console.log(choosenRow)
-    // console.log("RowNotChoosen")
-    // console.log(RowNotChoosen)
+    //循环判断状态,每个元素和其他行已经选中元素作为备选
+    for(let cellRow of this.cellArray){       
+        for(let cell of cellRow){
+          //选出其它行已选中元素
+           //console.log(choosenCode)
+           let otherRowChoosen = choosenCode.filter(x=>x.split("#")[0] != cell.code.split("#")[0])
+           //console.log("--------------")
+           //console.log(otherRowChoosen);
+           //console.log(cell.code)
+          //成为潜在可能选项
+          let potentialChoose = otherRowChoosen
+          potentialChoose.push(cell.code.toString());
+           
+           console.log(potentialChoose);
+          //进行组合
+          let combinationResult = this.combinationFunction(potentialChoose);
+          //console.log("------");
+          //console.log(combinationResult);
 
-    //循环判断状态
-    // for(let cell of this.cellArray){
-    //     console.log(cell)
-    // }
+          //判断cell状态
+
+        }
+    }
 
   }
   
+  combinationFunction(arr){
+    let result = new Array()
+    for(let i=1; i <=arr.length; i++){
+      let temp = combination(arr,i);
+      console.log("temp")
+      console.log(temp)
+      result.concat(temp)
+    }
+    console.log("result")
+    console.log(result)
+    return result;
+  }
+
   choosenRow(choosenCode){
     let rowArray = []
-    console.log("choosenCode")
-    console.log(choosenCode)
+   // console.log("choosenCode")
+    //console.log(choosenCode)
     for(let index in choosenCode){
       rowArray.push(choosenCode[index].split("#")[0]);
-      console.log(rowArray)
+      //console.log(rowArray)
     }
-    console.log("rowArray")
-    console.log(rowArray)
+    //console.log("rowArray")
+    //console.log(rowArray)
     return rowArray
   }
 
