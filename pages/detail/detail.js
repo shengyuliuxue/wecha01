@@ -41,8 +41,8 @@ Page({
         return
       }
       let sku = new SkuCode(productDetail.sku_list)
-      //console.log("sku")
-      //console.log(sku)
+      console.log("sku")
+      console.log(sku)
       sku._initCodePathDict()
       //console.log(sku.codeDict)
       //先提取成二维数组，再转秩
@@ -53,7 +53,8 @@ Page({
         productArray: objectArray,
         skucode:sku
       })
-
+      console.log("this.skucode");
+      console.log(this.data.skucode);
   },
 
   getArray(detail){
