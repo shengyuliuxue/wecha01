@@ -25,30 +25,39 @@ class Judger{
     let choosenSet = new Set(choosenRow);
     let a = this.codeArray
     let RowNotChoosen= a.filter(x=>!choosenRow.includes(x.toString()))
-
+    let PotentialSet = new Set();
+    let PotentialArray = new Array();
     //循环判断状态,每个元素和其他行已经选中元素作为备选
     for(let cellRow of this.cellArray){       
         for(let cell of cellRow){
           //选出其它行已选中元素
            //console.log(choosenCode)
-           let otherRowChoosen = choosenCode.filter(x=>x.split("#")[0] != cell.code.split("#")[0])
-           //console.log("--------------")
+           let otherRowChoosen = choosenCode.filter(x=>x.split("-")[0] != cell.code.split("-")[0])
+           
            //console.log(otherRowChoosen);
            //console.log(cell.code)
           //成为潜在可能选项
-          let potentialChoose = otherRowChoosen
+          let potentialChoose = otherRowChoosen;
           potentialChoose.push(cell.code.toString());
-           
-           console.log(potentialChoose);
+           //console.log("--------------")
+           //console.log(potentialChoose);
           //进行组合
-          let combinationResult = this.combinationFunction(potentialChoose);
-          //console.log("------");
-          //console.log(combinationResult);
-
-          //判断cell状态
-
+          let combinationResult = this.combinationFunction(potentialChoose);          
+          PotentialArray = PotentialArray.concat(combinationResult)
+     
+          //PotentialSet = new Set(combinationResultSet,PotentialSet);
+          
         }
+        
     }
+    //需要判断是否可以成为路径？
+
+    //console.log("--------------")
+    //console.log(PotentialArray);
+    PotentialSet = new Set(PotentialArray)
+    console.log("------");
+    console.log(PotentialSet);
+    //判断cell状态
 
   }
   
@@ -56,13 +65,32 @@ class Judger{
     let result = new Array()
     for(let i=1; i <=arr.length; i++){
       let temp = combination(arr,i);
-      console.log("temp")
-      console.log(temp)
-      result.concat(temp)
+      let tempend=[]
+      for(let j=0; j<temp.length; j++){
+        let tempStr = this.joinCode(temp[j]);
+        tempend = tempend.concat(tempStr);
+      }
+      //console.log("tempend")
+      //console.log(tempend)
+      
+
+      //组装成code#连接代码
+      result = result.concat(tempend);
     }
-    console.log("result")
-    console.log(result)
+    //console.log("result")
+    //console.log(result)
     return result;
+  }
+
+  joinCode(codeArray){
+    if(codeArray.length==1){
+      return codeArray[0]
+    }
+    if(codeArray.length>1){
+      let sortArray = codeArray.sort();
+      let codeString = sortArray.join("#")
+      return codeString
+    }
   }
 
   choosenRow(choosenCode){
