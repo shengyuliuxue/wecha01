@@ -79,7 +79,7 @@ Page({
          }
          let id = detail.sku_list[i].specs[j].key_id.toString();       
          let valueid = detail.sku_list[i].specs[j].value_id;
-         let idstr = id + "#" + valueid;
+         let idstr = id + "-" + valueid;
          this.skuDict.set(detail.sku_list[i].specs[j].value, idstr);
          keysets.add(id);         
       }
