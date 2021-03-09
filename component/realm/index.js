@@ -55,8 +55,9 @@ Component({
             })
           }
                  
-          this.data.judger.refreshStatus(this.data.choosenCode.pending, this.properties.skucode);
-         
+        let codeNeedChange =this.data.judger.refreshStatus(this.data.choosenCode.pending, this.properties.skucode);
+         console.log("this.data.choosenCode-----------------------------");
+         console.log(this.data.choosenCode);
       }
   },
 

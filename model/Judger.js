@@ -60,7 +60,7 @@ class Judger{
     //判断cell状态
     console.log("skucode------");
     console.log(skucode);
-    this.judeSkucodePath(PotentialSet, skucode.codeDict,choosenCode);
+    return this.judeSkucodePath(PotentialSet, skucode.codeDict,choosenCode);
   }
   
   //判断路径是否在潜在路径中
