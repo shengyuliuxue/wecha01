@@ -5,13 +5,13 @@ class SkuPending{
   }
 
   insertCell(code){
-    if(!this.isSelect(code)){
+    if(this.isSelect(code)){
       this.deletecell(this.isSelect(code)[0]);
+    }
     let incode = this.pending.concat(code)
     let codeSet = new Set(incode)
     this.pending = Array.from(codeSet)
-    }
-    return;
+    
   }
 
   deletecell(code){
