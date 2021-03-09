@@ -1,2 +1,2 @@
 <!--pages/detail.wxml-->
-<realm data="{{productArray}}" codeKeys="{{codeKeys}}"> </realm>
+<realm data="{{productArray}}" codeKeys="{{codeKeys}}" skucode="{{skucode}}"> </realm>

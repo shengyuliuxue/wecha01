@@ -9,7 +9,8 @@ Component({
    */
   properties: {
     data:Array,
-    codeKeys:Array
+    codeKeys:Array,
+    skucode:Object
   },
 
   /**
@@ -54,7 +55,7 @@ Component({
             })
           }
                  
-          this.data.judger.refreshStatus(this.data.choosenCode.pending);
+          this.data.judger.refreshStatus(this.data.choosenCode.pending, this.properties.skucode);
          
       }
   },

@@ -18,8 +18,8 @@ class SkuCode{
         //console.log(this.skuList[index])
         let skucodes = this.skuList[index].code.split("$")
         this.codeArray.push(skucodes[1])
-       // console.log("codeArray")
-       // console.log(this.codeArray)
+       //console.log("codeArray")
+       //console.log(this.codeArray)
     }
   }
 
@@ -45,8 +45,9 @@ class SkuCode{
           //console.log(tempArray)
         }        
     }
-    //console.log("codeDict")
-    //console.log(this.codeDict)
+    this.codeDict = tempArray
+    console.log("codeDict")
+    console.log(this.codeDict)
   }
    
 }
