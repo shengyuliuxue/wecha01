@@ -20,7 +20,7 @@ class Judger{
      
   }
 
-  refreshStatus(choosenCode){
+  refreshStatus(choosenCode, skucode){
     let choosenRow = this.choosenRow(choosenCode);
     let choosenSet = new Set(choosenRow);
     let a = this.codeArray
@@ -55,12 +55,38 @@ class Judger{
     //console.log("--------------")
     //console.log(PotentialArray);
     PotentialSet = new Set(PotentialArray)
-    console.log("------");
+    console.log("PotentialSet------");
     console.log(PotentialSet);
     //判断cell状态
-
+    console.log("skucode------");
+    console.log(skucode);
+    this.judeSkucodePath(PotentialSet, skucode.codeDict,choosenCode);
   }
   
+  //判断路径是否在潜在路径中
+  judeSkucodePath(PotentialSet, codeDict,choosenCode){
+    let NotInthePath = [];
+    let NotInthePathSet ;
+      for(let x of PotentialSet){
+        if(codeDict.includes(x)){
+          console.log(x + " in the path");
+        }else{
+          console.log(x + " Not in the path");
+          let tempArray = x.split("#");
+          if(tempArray.length>1){
+              let arr = tempArray.filter(code => !choosenCode.includes(code));
+              NotInthePath = NotInthePath.concat(arr);
+          }else{
+            NotInthePath = NotInthePath.concat(x)
+          }
+        }
+      }
+      NotInthePathSet = new Set(NotInthePath);
+      console.log("cell Not in the path")
+      console.log(NotInthePathSet);
+      return NotInthePathSet;
+  }
+
   combinationFunction(arr){
     let result = new Array()
     for(let i=1; i <=arr.length; i++){
