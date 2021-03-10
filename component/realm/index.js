@@ -33,29 +33,18 @@ Component({
     },
 
     cellcode: function(event){
-          let status = event.detail.status;
-          if(status === "selected"){
-            // let code = this.data.choosenCode.concat(event.detail.code);
-            // let codeSet = new Set(code)
-            // code = Array.from(codeSet)
-            // this.setData({
-            //   choosenCode: code 
-            // })    
-            this.data.choosenCode.insertCell(event.detail.code);         
+      console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+      console.log(event.detail.cell);
+          let status = event.detail.cell.status;
+          if(status === "selected"){  
+            this.data.choosenCode.insertCell(event.detail.cell.code);         
             this.setData({
               codeChoosenArray: this.data.choosenCode.pending
             })
           
           }
           if(status === "waiting"){
-            // let code = this.data.choosenCode;
-            // let codeSet = new Set(code)
-            // codeSet.delete(event.detail.code);
-            // code= Array.from(codeSet);
-            // this.setData({
-            //   choosenCode: code
-            // })
-            this.data.choosenCode.deletecell(event.detail.code);
+            this.data.choosenCode.deletecell(event.detail.cell.code);
             this.setData({
               codeChoosenArray: this.data.choosenCode.pending
             })
@@ -88,7 +77,10 @@ Component({
             console.log(this.properties.data[i].dataArray[j]);
           }
         }
-
+        
+        this.setData({
+          data: this.properties.data 
+        });
     }
 
   },
