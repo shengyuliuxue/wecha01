@@ -2,6 +2,7 @@
 import {SkuPending} from "../../model/SkuPending"
 import{Cell} from "../../model/Cell"
 import{Judger} from "../../model/Judger"
+import {CellStatus} from "../../core/enum"
 
 Component({
   /**
@@ -19,14 +20,19 @@ Component({
   data: {
      choosenCode : Object,
      judger : Object,
-     codeArray: Array
+     codeChoosenArray: Array,
+     codeNeedForbidden:Array
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-      cellcode: function(event){
+    refresh: function(){
+     
+    },
+
+    cellcode: function(event){
           let status = event.detail.status;
           if(status === "selected"){
             // let code = this.data.choosenCode.concat(event.detail.code);
@@ -37,7 +43,7 @@ Component({
             // })    
             this.data.choosenCode.insertCell(event.detail.code);         
             this.setData({
-              codeArray: this.data.choosenCode.pending
+              codeChoosenArray: this.data.choosenCode.pending
             })
           
           }
@@ -51,14 +57,40 @@ Component({
             // })
             this.data.choosenCode.deletecell(event.detail.code);
             this.setData({
-              codeArray: this.data.choosenCode.pending
+              codeChoosenArray: this.data.choosenCode.pending
             })
           }
                  
-        let codeNeedChange =this.data.judger.refreshStatus(this.data.choosenCode.pending, this.properties.skucode);
-         console.log("this.data.choosenCode-----------------------------");
-         console.log(this.data.choosenCode);
-      }
+        let codeNeedForbiddenSet =this.data.judger.refreshStatus(this.data.choosenCode.pending, this.properties.skucode);
+        let  codeNeedForbidden = Array.from(codeNeedForbiddenSet);
+        this.setData({
+          codeNeedForbidden: codeNeedForbidden
+        })
+        console.log("this.data.codeNeedForbidden-----------------------------");
+         console.log(this.data.codeNeedForbidden);
+         console.log(this.data.codeChoosenArray);
+         console.log(this.properties.data);
+
+        for(let i=0; i<this.properties.data.length; i++){
+          for(let j=0;  j<this.properties.data[i].dataArray.length; j++){
+            if(this.data.codeNeedForbidden.includes(this.properties.data[i].dataArray[j].code)){
+              this.properties.data[i].dataArray[j].status = CellStatus.FORBIDDEN;
+            }
+            else{
+                if(this.data.codeChoosenArray.includes(this.properties.data[i].dataArray[j].code)){
+                  this.properties.data[i].dataArray[j].status = CellStatus.SELECTED;
+                 
+                }else{
+                  this.properties.data[i].dataArray[j].status = CellStatus.WAITING;
+                }                 
+            }
+            console.log("---------------this.properties.data[i].dataArray[j]-----");
+            console.log(this.properties.data[i].dataArray[j]);
+          }
+        }
+
+    }
+
   },
 
   observers : {
@@ -75,13 +107,32 @@ Component({
       })
     },
 
-    'codeArray': function(codeArray){
-        if(!codeArray){
-          return
-        }
-        //console.log("codeArray changed");
-        //console.log(codeArray);
-        
+    'codeChoosenArray': function(codeChoosenArray){
+
+        console.log("codeChoosenArray ....");
+        console.log(codeChoosenArray);
+        //刷新每个cell状态
+        // let propertiesTempData = this.properties.data;
+        // for(let cellArray of propertiesTempData){
+        //   for(let cell of cellArray.dataArray){
+        //     console.log("cell-----------");
+        //     console.log(cell);
+        //     if(this.data.codeNeedForbidden.includes(cell.code)){
+        //       cell.status = CellStatus.FORBIDDEN;
+        //       return;
+        //     }
+        //     if(this.data.codeChoosenArray.includes(cell.code)){
+        //       cell.status = CellStatus.SELECTED;
+        //       return;
+        //     }
+        //       cell.status = CellStatus.WAITING;
+        //   }
+        // }
+        // this.setData({
+        //   data: propertiesTempData
+        // })
+        // console.log("---------------------this.properties.data");
+        // console.log(this.properties.data);
     }
   }
 

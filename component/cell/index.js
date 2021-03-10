@@ -62,9 +62,12 @@ Component({
     }
   },
 
-   observers:{
+  observers : {
       'cell': function(cell){
-        //console.log("********************")
+        if(!cell){
+          console.log("*************cell********************")
+          console.log(cell)
+        }       
       }
    }
 

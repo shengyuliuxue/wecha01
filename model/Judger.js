@@ -69,9 +69,9 @@ class Judger{
     let NotInthePathSet ;
       for(let x of PotentialSet){
         if(codeDict.includes(x)){
-          console.log(x + " in the path");
+          //console.log(x + " in the path");
         }else{
-          console.log(x + " Not in the path");
+          //console.log(x + " Not in the path");
           let tempArray = x.split("#");
           if(tempArray.length>1){
               let arr = tempArray.filter(code => !choosenCode.includes(code));
