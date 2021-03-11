@@ -11,7 +11,8 @@ Component({
   properties: {
     data:Array,
     codeKeys:Array,
-    skucode:Object
+    skucode:Object,
+    fenceGroupArray: Array
   },
 
   /**
@@ -21,7 +22,8 @@ Component({
      choosenCode : Object,
      judger : Object,
      codeChoosenArray: Array,
-     codeNeedForbidden:Array
+     codeNeedForbidden:Array,
+     
   },
 
   /**
@@ -58,28 +60,45 @@ Component({
         console.log("this.data.codeNeedForbidden-----------------------------");
          console.log(this.data.codeNeedForbidden);
          console.log(this.data.codeChoosenArray);
-         console.log(this.properties.data);
+         console.log(this.properties.fenceGroupArray);
 
-        for(let i=0; i<this.properties.data.length; i++){
-          for(let j=0;  j<this.properties.data[i].dataArray.length; j++){
-            if(this.data.codeNeedForbidden.includes(this.properties.data[i].dataArray[j].code)){
-              this.properties.data[i].dataArray[j].status = CellStatus.FORBIDDEN;
+        for(let i=0; i<this.properties.fenceGroupArray.length; i++){
+          for(let j=0;  j<this.properties.fenceGroupArray[i].dataArray.length; j++){
+            if(this.data.codeNeedForbidden.includes(this.properties.fenceGroupArray[i].dataArray[j].code)){
+              this.properties.fenceGroupArray[i].dataArray[j].status = CellStatus.FORBIDDEN;
             }
             else{
-                if(this.data.codeChoosenArray.includes(this.properties.data[i].dataArray[j].code)){
-                  this.properties.data[i].dataArray[j].status = CellStatus.SELECTED;
+                if(this.data.codeChoosenArray.includes(this.properties.fenceGroupArray[i].dataArray[j].code)){
+                  this.properties.fenceGroupArray[i].dataArray[j].status = CellStatus.SELECTED;
                  
                 }else{
-                  this.properties.data[i].dataArray[j].status = CellStatus.WAITING;
+                  this.properties.fenceGroupArray[i].dataArray[j].status = CellStatus.WAITING;
                 }                 
             }
             console.log("---------------this.properties.data[i].dataArray[j]-----");
-            console.log(this.properties.data[i].dataArray[j]);
+            console.log(this.properties.fenceGroupArray[i].dataArray[j]);
           }
         }
-        
+        // for(let i=0; i<this.properties.fenceGroupArray.length; i++){
+          
+        //     if(this.data.codeNeedForbidden.includes(this.properties.fenceGroupArray[i].code)){
+        //       this.properties.fenceGroupArray[i].status = CellStatus.FORBIDDEN;
+        //     }
+        //     else{
+        //         if(this.data.codeChoosenArray.includes(this.properties.fenceGroupArray[i].code)){
+        //           this.properties.fenceGroupArray[i].status = CellStatus.SELECTED;
+                 
+        //         }else{
+        //           this.properties.fenceGroupArray[i].status = CellStatus.WAITING;
+        //         }                 
+        //     }
+        //     console.log("---------------this.data.fenceGroupArray[i].status-----");
+        //     console.log(this.properties.fenceGroupArray[i]);
+          
+        // }
+        //问题所在
         this.setData({
-          data: this.properties.data 
+          fenceGroupArray: this.properties.fenceGroupArray
         });
     }
 
@@ -90,12 +109,24 @@ Component({
       if(!data){
         return
       }
-     
+     //问题所在
       let skupend = new SkuPending();
       let judge = new Judger(this.properties.data, this.properties.codeKeys);
+      // let tempArray = new Array();
+      // for(let array of this.properties.data){
+      //   tempArray=tempArray.concat(array.dataArray)
+      // }
+      //console.log("&&&&&&&&&%%%%%%@@@@@@@@@@@!!!!!!!!!!!")
+      //console.log(tempArray);
+      // this.setData({
+      //   choosenCode : skupend,
+      //   judger : judge,
+      //   fenceGroupArray: tempArray
+      // })
       this.setData({
         choosenCode : skupend,
-        judger : judge
+        judger : judge,
+        fenceGroupArray: data
       })
     },
 

@@ -4,7 +4,7 @@
     <image></image>
   </view>
   <view bindcellevent="cellcode">
-    <block wx:for="{{data}}">
+    <block wx:for="{{fenceGroupArray}}">
       <view>{{item.name}}</view>
       <fence array="{{item.dataArray}}"></fence>
     </block>
