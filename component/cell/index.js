@@ -21,50 +21,74 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    choose: function(event){
-     
-     if (this.properties.cell.status === "waiting"){
-       
-       this.properties.cell.status = CellStatus.SELECTED
-       this.setData({
-          outerclass:"s-outer",
-          innerclass:"s-inner",
-          // cell: { 
-          //   title: event.currentTarget.dataset.title,
-          //   status: CellStatus.SELECTED
-          // }
-       })
-        //return
-     }else{
-       if (this.properties.cell.status === "selected"){
-      this.properties.cell.status = CellStatus.WAITING
-      this.setData({
-         outerclass:"",
-         innerclass:"",
-        //  cell: { 
-        //   title: event.currentTarget.dataset.title,
-        //   status: CellStatus.WAITING
-        // }
-      })
-        //return 
+    onTap(event){
+      if (this.properties.cell.status === "waiting"){
+        this.properties.cell.status = CellStatus.SELECTED
+      }else{
+        if (this.properties.cell.status === "selected"){
+          this.properties.cell.status = CellStatus.WAITING
+        }
       }
-    }
-   
-    //console.log(this.properties.cell)
 
     this.triggerEvent('cellevent',
         {
-          code: this.properties.cell.code,
-          status: this.properties.cell.status
+          // code: this.properties.cell.code,
+          // status: this.properties.cell.status
+          cell: this.properties.cell
         }, 
         { bubbles: true, composed: true });
         
     }
-  },
+    },
 
-   observers:{
+    // choose: function(event){
+     
+    //  if (this.properties.cell.status === "waiting"){
+       
+    //    this.properties.cell.status = CellStatus.SELECTED
+    //    this.setData({
+    //       outerclass:"s-outer",
+    //       innerclass:"s-inner",
+    //       // cell: { 
+    //       //   title: event.currentTarget.dataset.title,
+    //       //   status: CellStatus.SELECTED
+    //       // }
+    //    })
+    //     //return
+    //  }else{
+    //    if (this.properties.cell.status === "selected"){
+    //   this.properties.cell.status = CellStatus.WAITING
+    //   this.setData({
+    //      outerclass:"",
+    //      innerclass:"",
+    //     //  cell: { 
+    //     //   title: event.currentTarget.dataset.title,
+    //     //   status: CellStatus.WAITING
+    //     // }
+    //   })
+    //     //return 
+    //   }
+    // }
+   
+    // //console.log(this.properties.cell)
+
+    // this.triggerEvent('cellevent',
+    //     {
+    //       code: this.properties.cell.code,
+    //       status: this.properties.cell.status
+    //     }, 
+    //     { bubbles: true, composed: true });
+        
+    // }
+    
+  //},
+
+  observers : {
       'cell': function(cell){
-        //console.log("********************")
+        if(!cell){
+          console.log("*************cell********************")
+          console.log(cell)
+        }       
       }
    }
 
